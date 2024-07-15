@@ -34,9 +34,17 @@ nav .left {
 }
 
 nav .logo {
+    display: flex;
+    align-items: center;
     font-size: 24px;
     font-weight: bold;
     margin-right: 20px;
+}
+
+nav .logo img.logo-image {
+    width: 100px; /* Adjust the size of the logo as needed */
+    height: auto;
+    margin-right: 10px;
 }
 
 .language-selector select {
@@ -67,6 +75,21 @@ nav ul li a {
     color: white;
     font-size: 16px;
 }
+
+/* Add this to your index.css file */
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: border-bottom 0.3s; /* Smooth transition for the underline */
+    border-bottom: 2px solid transparent; /* Initially transparent underline */
+}
+
+nav ul li a:hover {
+    border-bottom: 2px solid white; /* White underline on hover */
+}
+
 
 .start-button {
     background-color: white;
@@ -121,6 +144,52 @@ nav ul li a {
     background-color: white;
     color: #a13388;
 }
+
+/* Add this to your index.css file */
+
+.btn-start, .btn-learn-more {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background-color and text color */
+}
+
+.btn-start {
+    background-color: #a13388;
+    color: white;
+}
+
+.btn-learn-more {
+    background-color: white;
+    color: #a13388;
+}
+
+.btn-start:hover, .btn-learn-more:hover {
+    background-color: white; /* Background color on hover */
+    color: #a13388; /* Text color on hover */
+}
+
+
+/* Add this to your index.css file */
+
+.start-button, .btn-learn-more {
+    background-color: white;
+    color: #a13388;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background-color and text color */
+}
+
+.start-button:hover, .btn-learn-more:hover {
+    background-color: #a13388; /* Background color on hover */
+    color: white; /* Text color on hover */
+}
+
 
 .phone-image {
     margin-top: 40px;
