@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
 header {
     background-color: transparent; /* Initially transparent */
     padding: 20px 200px;
@@ -26,22 +27,17 @@ header {
     position: fixed; /* Fixed position to stay at the top */
     width: 100%;
     z-index: 1000; /* Ensure it's above other content */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    transition: background-image 0.5s ease-in-out, padding 0.5s ease-in-out; /* Smooth transition for background color and padding */
 }
 
 header.scrolled {
-    background-color: linear-gradient(135deg, #a13388, #10356c); /* Background color when scrolled or on other sections */
-}
-
-
-main {
-    padding: 120px 200px 0; /* Adjust padding to accommodate fixed header */
+    background-image: linear-gradient(135deg, #a13388, #10356c); /* Background color when scrolled or on other sections */
+    padding: 10px 200px; /* Adjust padding when scrolled */
 }
 
 main {
     padding: 120px 200px 0; /* Adjust padding to accommodate fixed header */
 }
-
 
 nav {
     display: flex;
@@ -101,12 +97,6 @@ nav ul li a.active {
     border-bottom: 2px solid white; /* White underline for active link */
 }
 
-/* Keep the hover effect as before */
-nav ul li a:hover {
-    border-bottom: 2px solid white; /* White underline on hover */
-}
-
-
 .start-button {
     background-color: white;
     color: #a13388;
@@ -120,10 +110,6 @@ nav ul li a:hover {
 .start-button:hover {
     background-color: #a13388; /* Background color on hover */
     color: white; /* Text color on hover */
-}
-
-main {
-    padding: 0 200px;
 }
 
 .hero {
@@ -142,7 +128,6 @@ main {
     flex-direction: column;
     justify-content: center; /* Center content vertically */
     align-items: flex-start;
-    /* padding-right: 20px; */
     margin-top: 40px;
 }
 
