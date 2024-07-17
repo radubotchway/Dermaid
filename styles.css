@@ -1,3 +1,4 @@
+/* Existing CSS */
 * {
     margin: 0;
     padding: 0;
@@ -16,14 +17,31 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 header {
-    background-color: transparent;
+    background-color: transparent; /* Initially transparent */
     padding: 20px 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed; /* Fixed position to stay at the top */
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: background-color 0.3s; /* Smooth transition for background color */
 }
+
+header.scrolled {
+    background-color: linear-gradient(135deg, #a13388, #10356c); /* Background color when scrolled or on other sections */
+}
+
+
+main {
+    padding: 120px 200px 0; /* Adjust padding to accommodate fixed header */
+}
+
+main {
+    padding: 120px 200px 0; /* Adjust padding to accommodate fixed header */
+}
+
 
 nav {
     display: flex;
@@ -103,6 +121,8 @@ main {
     align-items: center;
     justify-content: center; /* Center content horizontally */
     padding: 0 20px;
+    height: 100vh; /* Full viewport height */
+    margin-top: 100px; /* Ensure content is below fixed header */
 }
 
 .hero-content {
@@ -143,6 +163,7 @@ main {
     font-size: 16px;
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for background-color and text color */
+    text-decoration: none;
 }
 
 .btn-start {
@@ -168,7 +189,7 @@ main {
 .phone-image-container {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: center;  
     align-items: center;
 }
 
@@ -196,4 +217,42 @@ section {
 
 #contact {
     background-color: #d3d3d3;
+}
+
+#section-one {
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    padding: 50px;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Ensure it fills the entire width */
+    position: relative; /* Ensure relative positioning */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#section-one h2, #section-one p {
+    max-width: 800px; /* Example: Set maximum content width */
+    margin: 0 auto; /* Center content horizontally */
+}
+
+#section-two {
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    padding: 20px;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Ensure it fills the entire width */
+    position: relative; /* Ensure relative positioning */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#section-two h2, #section-two p {
+    max-width: 800px; /* Example: Set maximum content width */
+    margin: 0 auto; /* Center content horizontally */
 }
