@@ -24,6 +24,16 @@ function highlightActiveLink() {
             }
         }
     });
+
+    // Update header based on scroll position
+    const header = document.querySelector('header');
+    const scrollChangePosition = 400; // Adjust as needed
+
+    if (scrollPosition >= scrollChangePosition) {
+        header.classList.add('scrolled'); // Add class 'scrolled' to header
+    } else {
+        header.classList.remove('scrolled'); // Remove class 'scrolled' from header
+    }
 }
 
 // Highlight active link on page load and scroll
