@@ -96,6 +96,17 @@ nav ul li a:hover {
     border-bottom: 2px solid white; /* White underline on hover */
 }
 
+/* Add a class for active links */
+nav ul li a.active {
+    border-bottom: 2px solid white; /* White underline for active link */
+}
+
+/* Keep the hover effect as before */
+nav ul li a:hover {
+    border-bottom: 2px solid white; /* White underline on hover */
+}
+
+
 .start-button {
     background-color: white;
     color: #a13388;
@@ -205,6 +216,8 @@ section {
 #features, #gallery, #contact {
     background-color: #f0f0f0; /* Add some background color for contrast */
     color: #333; /* Dark text color for readability */
+    height: 100vh;
+    width: 100%;
 }
 
 #features {
