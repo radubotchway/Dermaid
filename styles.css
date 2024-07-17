@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* Add this line for smooth scrolling */
+}
+
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #a13388, #10356c);
@@ -171,4 +175,25 @@ main {
 .phone-image {
     width: 50%;
     height: 50%;
+}
+
+section {
+    padding: 100px 0; /* Add some padding for spacing */
+}
+
+#features, #gallery, #contact {
+    background-color: #f0f0f0; /* Add some background color for contrast */
+    color: #333; /* Dark text color for readability */
+}
+
+#features {
+    background-color: #f0e68c;
+}
+
+#gallery {
+    background-color: #add8e6;
+}
+
+#contact {
+    background-color: #d3d3d3;
 }
