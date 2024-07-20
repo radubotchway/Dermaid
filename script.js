@@ -44,3 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
         highlightActiveLink(); // Highlight on scroll
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const featuresSection = document.querySelector('.features');
+    const steps = featuresSection.querySelectorAll('.step');
+    const images = featuresSection.querySelectorAll('.images img');
+
+    steps.forEach(step => {
+        step.addEventListener('mouseover', () => {
+            // Hide all images
+            images.forEach(image => image.classList.remove('active'));
+            
+            // Show the corresponding image
+            const imageId = step.getAttribute('data-image');
+            featuresSection.querySelector(`#${imageId}`).classList.add('active');
+        });
+
+        // Optional: Hide the image when the mouse leaves the step
+        step.addEventListener('mouseout', () => {
+            const imageId = step.getAttribute('data-image');
+            featuresSection.querySelector(`#${imageId}`).classList.remove('active');
+        });
+    });
+});

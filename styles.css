@@ -205,9 +205,66 @@ section {
     width: 100%;
 }
 
+
 #features {
-    background-color: #F8F7FC;
+    background-color: #F8F7FC; /* Set the background color */
+    min-height: 100vh; /* Ensure it fills the entire viewport */
+    width: 100%; /* Ensure full width */
+    display: flex; /* Flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
 }
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+}
+
+.features .steps {
+    flex: 1;
+    padding: 20px;
+}
+
+.features .step {
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.features .step h2 {
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 20px;
+}
+
+hr {
+    margin-bottom: 40px;
+}
+
+.features .images {
+    flex: 1;
+    position: relative;
+    padding: 20px;
+}
+
+.features .images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+.features .images img.active {
+    display: block;
+}
+
 
 #gallery {
     background-color: #F8F7FC;
@@ -216,6 +273,8 @@ section {
 #contact {
     background-color: #d3d3d3;
 }
+
+
 
 #section-one {
     display: flex;
@@ -337,4 +396,16 @@ section {
 #section-two h2, #section-two p {
     max-width: 800px; /* Example: Set maximum content width */
     margin: 0 auto; /* Center content horizontally */
+}
+
+.heart-icon {
+    color: #a13388; /* Adjust the color as needed */
+}
+
+.rocket-icon {
+    color: #041c41; /* Adjust the color as needed */
+}
+
+@media(max-width:768px){
+    
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dermaid</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/d014e09def.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -18,7 +19,7 @@
                 <ul>
                     <li><a href="#home" class="nav-link">Home</a></li>
                     <li><a href="#features" class="nav-link">Features</a></li>
-                    <li><a href="FAQ" class="nav-link">FAQ</a></li>
+                    <li><a href=faq.html>FAQ</a></li>
                     <li><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -34,7 +35,7 @@
                 <p>Use our powerful AI technology to scan, analyze and detect skin diseases in three simple steps. Fast and free!</p>
                 <div class="buttons">
                     <a href="#start" class="btn-start">Get Started</a>
-                    <a href="#learn-more" class="btn-learn-more">Learn More</a>
+                    <a href=faq.html class="btn-learn-more">Learn More</a>
                 </div>
             </div>
             <div class="phone-image-container">
@@ -50,9 +51,10 @@
                 <img src="path-to-your-image/phone-image.png" alt="Phone Image" class="phone-image">
             </div>
             <div class="text-content">
-                <h2>Hi, I am Medgic :)</h2>
+                <i class="fa-regular fa-heart fa-beat fa-3x heart-icon"></i>
+                <h2>Hi, I am Dermaid :)</h2>
                 <p>I am a very advanced Artificial Intelligence (AI) robot built by my human founders to analyze skin conditions.</p>
-                <a href="#read-more" class="btn-read-more">Read More</a>
+                <a href=faq.html class="btn-read-more">Read More</a>
             </div>
         </section>        
         
@@ -61,16 +63,36 @@
                 <img src="path-to-your-image/phone-image.png" alt="Phone Image" class="phone-image">
             </div>
             <div class="text-content">
+                <i class="fa-solid fa-rocket fa-bounce fa-3x rocket-icon"></i>
                 <h2>My Mission</h2>
                 <p>I can think and learn. I become smarter every time you use me. With your participation, one day I will be able to solve global healthcare challenges!</p>
-                <a href="#read-more" class="btn-read-more">Read More</a>
+                <a href=faq.html class="btn-read-more">Read More</a>
             </div>
         </section>        
         
-        <!-- Features Section -->
-        <section id="features">
-            <h2>Features</h2>
-            <p>Explore the amazing features of our website.</p>
+                <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="steps">
+                <div class="step" data-image="image1">
+                    <h2>1</h2>
+                    <p>Camera, action! <br> Take or upload a photo of your skin condition</p>
+                </div>
+                <hr>
+                <div class="step" data-image="image2">
+                    <h2>2</h2>
+                    <p>I analyze <br> Let me think about it.. No humans involved, but some electricity pls..</p>
+                </div>
+                <hr>
+                <div class="step" data-image="image3">
+                    <h2>3</h2>
+                    <p>Get results <br> I will tell you what I think it is*, along with some friendly advices*</p>
+                </div>
+            </div>
+            <div class="images">
+                <img id="image1" src="path/to/your/image1.png" alt="Step 1">
+                <img id="image2" src="path/to/your/image2.png" alt="Step 2">
+                <img id="image3" src="path/to/your/image3.png" alt="Step 3">
+            </div>
         </section>
         
         <!-- Gallery Section -->
