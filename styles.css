@@ -218,18 +218,63 @@ section {
 }
 
 #section-one {
-    background-color: #fff;
-    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 50px;
-    height: 100vh; /* Full viewport height */
-    width: 100%; /* Ensure it fills the entire width */
-    position: relative; /* Ensure relative positioning */
-    overflow-x: hidden; /* Hide horizontal overflow */
+    padding: 100px 0;
+    background-color: white;
+    color: #333;
+    height: 100vh;
+}
+
+#section-one .phone-image-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+#section-one .phone-image {
+    max-width: 100%;
+    height: auto;
+}
+
+#section-one .text-content {
+    flex: 1;
+    padding: 20px;
+}
+
+#section-one .text-content p, #section-one .text-content h2,
+#section-two .text-content p, #section-two .text-content h2 {
+    margin-bottom: 35px;
+}
+
+#section-one h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#section-one p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn-read-more {
+    background-color: #FF4081;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 60px;
+}
+
+.btn-read-more:hover {
+    background-color: #D81B60;
+}
+
 
 #section-one h2, #section-one p {
     max-width: 800px; /* Example: Set maximum content width */
@@ -237,18 +282,57 @@ section {
 }
 
 #section-two {
-    background-color: #fff;
-    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 20px;
-    height: 100vh; /* Full viewport height */
-    width: 100%; /* Ensure it fills the entire width */
-    position: relative; /* Ensure relative positioning */
-    overflow-x: hidden; /* Hide horizontal overflow */
+    padding: 100px 0;
+    background-color: white;
+    color: #333;
+    height: 100vh;
+}
+
+#section-two .phone-image-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+#section-two .phone-image {
+    max-width: 100%;
+    height: auto;
+}
+
+#section-two .text-content {
+    flex: 1;
+    padding: 20px;
+}
+
+#section-two h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#section-two p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn-read-more {
+    background-color: #FF4081;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-read-more:hover {
+    background-color: #D81B60;
+}
+
 
 #section-two h2, #section-two p {
     max-width: 800px; /* Example: Set maximum content width */
