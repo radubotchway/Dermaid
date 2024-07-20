@@ -242,6 +242,26 @@ section {
     margin-bottom: 20px;
 }
 
+
+/* Add hover effect for steps */
+.features .step:hover h2 {
+    background-color: #351159; /* Change circle background color */
+    color: #fff; /* Change circle text color */
+}
+
+/* Change h2 color when any step is hovered */
+.features .step:hover ~ h2,
+.features .step:hover h2 {
+    color: #fff; /* Change h2 color on hover */
+}
+
+/* Change other text color when any step is hovered */
+.features .step:hover ~ .step-description,
+.features .step:hover .step-description {
+    color: #fff; /* Change step description color on hover */
+}
+
+
 hr {
     margin-bottom: 40px;
 }
@@ -407,5 +427,5 @@ hr {
 }
 
 @media(max-width:768px){
-    
+
 }
