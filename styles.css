@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #a13388, #10356c);
+    background-image: linear-gradient(135deg, #351159, #041c41);
     color: white;
     display: flex;
     flex-direction: column;
@@ -31,12 +31,12 @@ header {
 }
 
 header.scrolled {
-    background-image: linear-gradient(135deg, #a13388, #10356c); /* Background color when scrolled or on other sections */
+    background-image: linear-gradient(135deg, #351159, #041c41); /* Background color when scrolled or on other sections */
     padding: 10px 200px; /* Adjust padding when scrolled */
 }
 
 main {
-    padding: 120px 200px 0; /* Adjust padding to accommodate fixed header */
+    padding: 10px 200px 0; /* Adjust padding to accommodate fixed header */
 }
 
 nav {
@@ -190,8 +190,8 @@ nav ul li a.active {
 }
 
 .phone-image {
-    width: 50%;
-    height: 50%;
+    width: 120%;
+    height: 100%;
 }
 
 section {
@@ -206,11 +206,11 @@ section {
 }
 
 #features {
-    background-color: #f0e68c;
+    background-color: #F8F7FC;
 }
 
 #gallery {
-    background-color: #add8e6;
+    background-color: #F8F7FC;
 }
 
 #contact {
