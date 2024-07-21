@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-image: linear-gradient(135deg, #351159, #041c41);
+    background-image: linear-gradient(150deg, #383675, #121051);
     color: white;
     display: flex;
     flex-direction: column;
@@ -190,8 +190,8 @@ nav ul li a.active {
 }
 
 .phone-image {
-    width: 120%;
-    height: 100%;
+    width: 180%;
+    height: 180%;
 }
 
 section {
@@ -273,12 +273,13 @@ hr {
 }
 
 .features .images img {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
+    /* left: 0; */
+    width: 50%;
+    height: 90vh;
     display: none;
+    margin-left: 200px;
 }
 
 .features .images img.active {
@@ -419,11 +420,11 @@ hr {
 }
 
 .heart-icon {
-    color: #a13388; /* Adjust the color as needed */
+    color: #041c41; /* Adjust the color as needed */
 }
 
 .rocket-icon {
-    color: #041c41; /* Adjust the color as needed */
+    color: #383675; /* Adjust the color as needed */
 }
 
 @media(max-width:768px){
