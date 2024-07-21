@@ -68,3 +68,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+//Gallery 
+let currentIndex = 0;
+const slides = document.querySelectorAll('.gallery-slide');
+const dots = document.querySelectorAll('.nav-dot');
+
+function showSlide(index) {
+    slides.forEach((slide, idx) => {
+        if (idx === index) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+        slide.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    dots.forEach((dot, idx) => {
+        if (idx === index) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+}
+
+let startX;
+let isDragging = false;
+const gallery = document.querySelector('.gallery');
+
+gallery.addEventListener('mousedown', (e) => {
+    startX = e.pageX - gallery.offsetLeft;
+    isDragging = true;
+    gallery.style.cursor = 'grabbing';
+});
+
+gallery.addEventListener('mouseup', () => {
+    isDragging = false;
+    gallery.style.cursor = 'grab';
+});
+
+gallery.addEventListener('mouseleave', () => {
+    isDragging = false;
+    gallery.style.cursor = 'grab';
+});
+
+gallery.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - gallery.offsetLeft;
+    const walk = (x - startX) * 3; // Adjust the multiplier as needed
+    gallery.scrollLeft -= walk;
+    startX = x;
+});
+
+function currentSlide(n) {
+    currentIndex = n - 1;
+    showSlide(currentIndex);
+}
+
+document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+    dot.addEventListener('click', () => currentSlide(index + 1));
+});
+
+// Auto-slide functionality
+setInterval(nextSlide, 5000); // Change slides every 5 seconds
+
+// Initialize the first slide
+showSlide(currentIndex);

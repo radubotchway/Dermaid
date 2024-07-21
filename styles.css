@@ -287,9 +287,88 @@ hr {
 }
 
 
+
 #gallery {
     background-color: #F8F7FC;
 }
+
+/* Gallery section styles */
+/* Gallery section styles */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.gallery-header {
+    margin-bottom: 30px;
+}
+
+.gallery-header h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.gallery-header p {
+    font-size: 1.5em;
+    margin: 10px 0 0;
+}
+
+.gallery {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    cursor: grab;
+    overflow: hidden;
+}
+
+.gallery:active {
+    cursor: grabbing;
+}
+
+.gallery-slide {
+    min-width: 100%; /* Make each slide take full width */
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5; /* Set opacity for all slides */
+}
+
+.gallery-slide.active {
+    opacity: 1; /* Set full opacity for the active slide */
+}
+
+.gallery-slide img {
+    width: auto;
+    height: 60vh; /* Adjust the height as needed */
+    vertical-align: middle;
+}
+
+.gallery-nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-dot.active {
+    background-color: #717171;
+}
+
 
 #contact {
     background-color: #d3d3d3;

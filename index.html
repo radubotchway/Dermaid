@@ -95,11 +95,42 @@
             </div>
         </section>
         
+
         <!-- Gallery Section -->
         <section id="gallery">
-            <h2>Gallery</h2>
-            <p>Check out some photos from our collection.</p>
+            <div class="gallery-container">
+                <div class="gallery-header">
+                    <h2>GALLERY</h2>
+                    <p>How I actually look like!</p>
+                </div>
+                <div class="gallery">
+                    <div class="gallery-slide active">
+                        <img src="./en_a.jpg" alt="Image 1">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="./en_b.jpg" alt="Image 2">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="./en_c.jpg" alt="Image 3">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="./en_d.jpg" alt="Image 4">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="./en_e.jpg" alt="Image 5">
+                    </div>
+                </div>
+                <div class="gallery-nav">
+                    <span class="nav-dot active" onclick="currentSlide(1)"></span>
+                    <span class="nav-dot" onclick="currentSlide(2)"></span>
+                    <span class="nav-dot" onclick="currentSlide(3)"></span>
+                    <span class="nav-dot" onclick="currentSlide(4)"></span>
+                    <span class="nav-dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
         </section>
+        
+
         
         <!-- Contact Section -->
         <section id="contact">
