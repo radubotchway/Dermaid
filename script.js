@@ -61,11 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             featuresSection.querySelector(`#${imageId}`).classList.add('active');
         });
 
-        // Optional: Hide the image when the mouse leaves the step
-        step.addEventListener('mouseout', () => {
-            const imageId = step.getAttribute('data-image');
-            featuresSection.querySelector(`#${imageId}`).classList.remove('active');
-        });
     });
 });
 
