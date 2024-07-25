@@ -137,3 +137,4 @@ setInterval(nextSlide, 5000); // Change slides every 5 seconds
 
 // Initialize the first slide
 showSlide(currentIndex);
+

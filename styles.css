@@ -293,7 +293,6 @@ hr {
 }
 
 /* Gallery section styles */
-/* Gallery section styles */
 .gallery-container {
     position: relative;
     width: 100%;
@@ -540,7 +539,7 @@ hr {
 }
 
 #section-one .phone-image {
-    max-width: 100%;
+    max-width: 200%;
     height: auto;
 }
 
@@ -604,7 +603,7 @@ hr {
 }
 
 #section-two .phone-image {
-    max-width: 100%;
+    max-width: 120%;
     height: auto;
 }
 
@@ -651,6 +650,46 @@ hr {
     color: #383675; /* Adjust the color as needed */
 }
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+    header, main, nav {
+        padding: 10px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .hero p {
+        font-size: 18px;
+    }
+    .features, .gallery-container {
+        flex-direction: column;
+    }
+    .phone-image {
+        width: 100%;
+    }
+}
 
+/* Additional improvements for footer and contact section */
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    color: #333;
+    border-top: 1px solid #ddd;
+}
+
+.footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer .footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
 }
