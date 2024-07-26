@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Photo for Analysis</title>
+    <title>Upload</title>
     <link rel="stylesheet" href="/static/upload.css">
 </head>
 <body>
@@ -11,31 +11,38 @@
         <nav>
             <div class="left">
                 <div class="logo">
-                    <img src="/Logo/dermaid-high-resolution-logo-white-transparent (1).png" alt="Logo" class="logo-image">
+                    <img src="/static/dermaid-high-resolution-logo-white-transparent (1).png" class="logo-image" alt="Logo">
                 </div>
             </div>
-
             <div class="right">
                 <ul>
-                    <li><a href="./index.html" class="nav-link">Home</a></li>
-                    <li><a href=faq.html>FAQ</a></li>
-                    <li><a href="./index.html#contact" class="nav-link">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/upload" class="active">Upload</a></li>
+                    <li><a href="/templates/faq.html">About Us</a></li>
+                    <li><a href="/templates/index.html#contact">Contact</a></li>
                 </ul>
             </div>
-        </nav>        
+        </nav>
     </header>
-    <section id="upload" class="upload-section">
+
+    <div class="upload-section">
         <div class="container">
-            <h1>Upload Your Photo</h1>
+            <h1>Upload an Image</h1>
             <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                <label for="fileUpload" class="custom-file-upload">
-                    <input type="file" id="fileUpload" name="file" accept="image/*" required>
-                    Choose Photo
+                <label class="custom-file-upload">
+                    <input type="file" name="file" id="fileInput">
+                    Choose File
                 </label>
-                <button type="submit">Upload and Analyze</button>
+                <br>
+                <button type="submit">Upload</button>
             </form>
+            <div id="result" style="display: none; margin-top: 20px;">
+                <h2>Prediction Result:</h2>
+                <p id="prediction"></p>
+            </div>
         </div>
-    </section>
+    </div>
+
     <script src="/static/upload.js"></script>
 </body>
 </html>
