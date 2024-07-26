@@ -16,16 +16,28 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     })
     .then(response => response.json())
     .then(data => {
+        // Remove the loading message
+        document.querySelector('.container').removeChild(loadingMessage);
+
         if (data.success) {
-            // Redirect to the prediction result page
-            window.location.href = '/diagnosis-result';
+            // Display the prediction result
+            const resultDiv = document.getElementById('result');
+            const predictionP = document.getElementById('prediction');
+            predictionP.textContent = data.prediction;
+            resultDiv.style.display = 'block';
         } else {
-            loadingMessage.textContent = 'There was an error analyzing your photo. Please try again.';
-            loadingMessage.style.color = 'red';
+            const errorMessage = document.createElement('p');
+            errorMessage.textContent = data.error || 'There was an error analyzing your photo. Please try again.';
+            errorMessage.style.color = 'red';
+            document.querySelector('.container').appendChild(errorMessage);
         }
     })
     .catch(error => {
-        loadingMessage.textContent = 'An unexpected error occurred. Please try again.';
-        loadingMessage.style.color = 'red';
+        document.querySelector('.container').removeChild(loadingMessage);
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'An unexpected error occurred. Please try again.';
+        errorMessage.style.fontSize = '18px';
+        errorMessage.style.color = 'red';
+        document.querySelector('.container').appendChild(errorMessage);
     });
 });

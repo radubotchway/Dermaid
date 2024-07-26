@@ -1,50 +1,64 @@
-from flask import Flask, request, render_template, redirect, url_for
-import tensorflow as tf
+import os
 import numpy as np
-import cv2
-from PIL import Image
-import io
+from flask import Flask, request, jsonify, render_template
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads/'
 
-# Load your pre-trained model
-model = tf.keras.models.load_model('model/your_model.h5')
+# Assuming you have loaded your model and class names
+# model = ...
+# class_names = ...
 
-# Define image preprocessing function
-def preprocess_image(image):
-    image = image.convert('RGB')  # Convert to RGB if it's not
-    image = np.array(image)  # Convert image to numpy array
-    image = cv2.resize(image, (224, 224))  # Resize to match the input shape of the model
-    image = image / 255.0  # Normalize pixel values
-    image = np.expand_dims(image, axis=0)  # Add batch dimension
-    return image
+# Dictionary containing disease information
+disease_info = {
+    'Disease1': {
+        'description': 'Description of Disease 1.',
+        'recommendations': 'Follow-up recommendations for Disease 1.',
+        'treatment': 'Treatment options for Disease 1.',
+        'advice': 'Advice on consulting a healthcare professional for Disease 1.'
+    },
+    'Disease2': {
+        'description': 'Description of Disease 2.',
+        'recommendations': 'Follow-up recommendations for Disease 2.',
+        'treatment': 'Treatment options for Disease 2.',
+        'advice': 'Advice on consulting a healthcare professional for Disease 2.'
+    },
+    # Add more diseases as needed
+}
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/upload')
-def upload():
-    return render_template('upload.html')
+def preprocess_image(filepath):
+    # Add your image preprocessing code here
+    pass
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return redirect(request.url)
-    
+        return jsonify(success=False, error='No file part')
+
     file = request.files['file']
     if file.filename == '':
-        return redirect(request.url)
-    
-    # Process the image
-    image = Image.open(file)
-    processed_image = preprocess_image(image)
-    
-    # Make prediction
-    prediction = model.predict(processed_image)
-    predicted_class = np.argmax(prediction, axis=1)[0]
-    
-    return render_template('result.html', prediction=predicted_class)
+        return jsonify(success=False, error='No selected file')
+
+    if file:
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        file.save(filepath)
+
+        img = preprocess_image(filepath)
+        prediction = model.predict(img)
+        index = np.argmax(prediction)
+        result = class_names[index]
+        
+        info = disease_info.get(result, {})
+        return jsonify(success=True, prediction=result, info=info)
+
+    return jsonify(success=False, error='Unknown error')
+
+@app.route('/upload.html', methods=['GET'])
+def upload_page():
+    return render_template('upload.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
