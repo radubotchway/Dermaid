@@ -49,6 +49,12 @@ disease_info = {
         'treatment': 'Topical or oral antibiotics are used to treat impetigo. Proper hygiene and regular cleaning of the infected area are also important.',
         'advice': 'Consult a healthcare professional for a proper diagnosis and treatment plan if you or your child develops impetigo.'
     },
+    'Clear Skin': {
+        'description': 'The uploaded skin appears to be clear and healthy.',
+        'recommendations': 'No immediate actions are necessary. Maintain good skin hygiene.',
+        'treatment': 'None required.',
+        'advice': 'If you have any concerns about your skin, consult a healthcare professional.'
+    },
     'Athlete-Foot': {
         'description': 'Athlete’s foot is a fungal infection that usually begins between the toes. It commonly occurs in people whose feet have become very sweaty while confined within tight-fitting shoes.',
         'recommendations': 'Keep feet dry, especially between the toes, change socks regularly, and use antifungal powders or sprays as recommended.',
