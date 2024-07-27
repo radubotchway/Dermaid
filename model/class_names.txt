@@ -1,9 +1,9 @@
-cellulitis
-impetigo
-clear-skin
-athlete's foot
-nail fungus
-ringworm
-cutaneous larva
-chicken pox
-shingles
+Cellulitis
+Impetigo
+Clear Skin
+Athlete-Foot
+Nail Fungus
+Ringworm
+Cutaneous Larva Migrans
+Chicken Pox
+Shingles

@@ -80,9 +80,6 @@ print("Done saving the model")
 
 
 
-
-
-
 # Plot training & validation accuracy and loss
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
