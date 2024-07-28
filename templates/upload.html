@@ -26,23 +26,31 @@
         </nav>
     </header>
 
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Upload Your Image for Diagnosis</h1>
+            <p>Get a quick and accurate diagnosis for your skin condition.</p>
+        </div>
+    </div>
+
     <div class="upload-section">
         <div class="container">
-            <h1>Upload an Image</h1>
-            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <form id="uploadForm" class="upform" action="/upload" method="post" enctype="multipart/form-data">
                 <label class="custom-file-upload">
                     <input type="file" name="file" id="fileInput">
-                    Choose File
+                    <span>Choose File</span>
                 </label>
-                <br>
+                <br><br>
                 <button type="submit">Upload</button>
             </form>
+            <div id="loading" class="loading-animation" style="display: none;">
+                <div class="spinner"></div>
+            </div>
             <div id="result" style="display: none; margin-top: 20px;">
                 <h2>Prediction Result:</h2>
                 <p id="prediction"></p>
                 <div id="info" class="info-section"></div>
             </div>
-            <!-- Add the result section here -->
             <div id="resultSection" style="display: none; margin-top: 20px;">
                 <!-- This will be populated by JavaScript -->
             </div>
