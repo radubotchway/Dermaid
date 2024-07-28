@@ -3,24 +3,23 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
 
     const formData = new FormData(this);
 
-    // Show a loading spinner or message
-    const loadingMessage = document.createElement('p');
-    loadingMessage.textContent = 'Uploading and analyzing the file, please wait...';
-    document.body.appendChild(loadingMessage);
+  // Show the loading animation
+  const loadingAnimation = document.getElementById('loading');
+  loadingAnimation.style.display = 'block';
 
-    fetch('/upload', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        console.log('Response received:', response);
-        return response.json();
-    })
-    .then(data => {
-        console.log('Data received:', data);
-        if (data.success) {
-            const result = data.prediction;
-            const info = data.info;
+  fetch('/upload', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => {
+      console.log('Response received:', response);
+      return response.json();
+  })
+  .then(data => {
+      console.log('Data received:', data);
+      if (data.success) {
+          const result = data.prediction;
+          const info = data.info;
 
             // Find the result section
             const resultSection = document.getElementById('resultSection');
@@ -51,7 +50,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
         alert('An error occurred while uploading the file.');
     })
     .finally(() => {
-        // Remove the loading spinner or message
-        loadingMessage.remove();
+        // Hide the loading animation
+        loadingAnimation.style.display = 'none';
     });
 });
