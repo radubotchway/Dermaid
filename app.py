@@ -28,11 +28,11 @@ model = models.Sequential([
 model.build((None, 128, 128, 3))
 
 # Load the model weights
-model.load_weights(r'C:\Users\ronar\Desktop\Programming\Dermaid\model\model.weights.h5')
+model.load_weights('model/model.weights.h5')
 print("Model weights loaded")
 
 # Load class names
-with open(r'C:\Users\ronar\Desktop\Programming\Dermaid\model\class_names.txt', 'r') as f:
+with open('model/class_names.txt', 'r') as f:
     class_names = [line.strip() for line in f.readlines()]
 
 # Dictionary containing disease information
@@ -96,7 +96,7 @@ disease_info = {
 # Function to preprocess the image
 def preprocess_image(img_path):
     img = cv2.imread(img_path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # converting from BGR colour scheme to RGB colour scheme
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # converting from BGR to RGB
     img = cv2.resize(img, (128, 128))  # Resize to 128x128 pixels
     img = img / 255.0  # Normalize the image
     img = np.expand_dims(img, axis=0)  # Add batch dimension
@@ -117,12 +117,10 @@ def upload_page():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'image' not in request.files:
-        print('No file part in the request')
         return jsonify(success=False, error='No file part')
     
     file = request.files['image']
     if file.filename == '':
-        print('No file selected for uploading')
         return jsonify(success=False, error='No selected file')
     
     if file:
@@ -131,9 +129,7 @@ def upload_file():
         try:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             file.save(filepath)
-            print(f'File saved at {filepath}')
         except Exception as e:
-            print(f"Error saving file: {e}")
             return jsonify(success=False, error=f"Error saving file: {e}")
         
         try:
@@ -141,16 +137,13 @@ def upload_file():
             prediction = model.predict(img)
             index = np.argmax(prediction)
             result = class_names[index]
-            print(f'Prediction: {result}')
         
             # Add disease information to the response
             info = disease_info.get(result, {})
             return jsonify(success=True, prediction=result, info=info)
         except Exception as e:
-            print(f"Error processing image: {e}")
             return jsonify(success=False, error=f"Error processing image: {e}")
 
-    print('Unknown error occurred')
     return jsonify(success=False, error='Unknown error')
 
 @app.route('/faq.html')
