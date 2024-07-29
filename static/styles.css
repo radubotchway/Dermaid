@@ -171,6 +171,11 @@ nav ul li a.active {
     line-height: 30px;
 }
 
+#home .phone-image{
+    height: auto;
+    max-width: 200%;
+}
+
 .buttons {
     display: flex;
     gap: 20px;

@@ -116,11 +116,11 @@ def upload_page():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if 'file' not in request.files:
+    if 'image' not in request.files:
         print('No file part in the request')
         return jsonify(success=False, error='No file part')
     
-    file = request.files['file']
+    file = request.files['image']
     if file.filename == '':
         print('No file selected for uploading')
         return jsonify(success=False, error='No selected file')
