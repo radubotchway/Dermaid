@@ -3,60 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload</title>
-    <link rel="stylesheet" href="/static/upload.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Dermaid - Upload Page</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url('/static/mission.png');
+        }
+
+
+        .has-mask {
+            position: absolute;
+            clip: rect(10px, 150px, 130px, 10px);
+        }
+
+        /* Header styling */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-image: linear-gradient(135deg, #351159, #041c41);
+            z-index: 1000;
+            padding: 10px 50px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: #ffffff;
+        }
+
+        .nav-link {
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #007BFF;
+        }
+
+        .logo {
+            max-height: 40px; /* Adjust as needed */
+        }
+
+        .result-section {
+            display: none; /* Initially hidden */
+        }
+
+        /* Loading animation styles */
+        .loading-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #004080;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #004080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .diag{
+            text-align: center;
+            text-shadow: 2px 2px 5px #0056b3;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="left">
-                <div class="logo">
-                    <img src="/static/dermaid-high-resolution-logo-white-transparent (1).png" class="logo-image" alt="Logo">
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="container mx-auto flex items-center justify-between py-4">
+            <div class="flex items-center">
+                <a href="/" class="flex items-center">
+                    <img src="/static/dermaid-high-resolution-logo-white-transparent (1).png" alt="Dermaid Logo" class="logo">
+                </a>
             </div>
-            <div class="right">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/upload" class="active">Upload</a></li>
-                    <li><a href="/templates/faq.html">About Us</a></li>
-                    <li><a href="/templates/index.html#contact">Contact</a></li>
-                </ul>
+            <div class="flex space-x-4">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about-us" class="nav-link">About Us</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/faq" class="nav-link">FAQ</a>
             </div>
         </nav>
     </header>
 
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1>Upload Your Image for Diagnosis</h1>
-            <p>Get a quick and accurate diagnosis for your skin condition.</p>
-        </div>
-    </div>
-
-    <div class="upload-section">
-        <div class="container">
-            <form id="uploadForm" class="upform" action="/upload" method="post" enctype="multipart/form-data">
-                <label class="custom-file-upload">
-                    <input type="file" name="file" id="fileInput">
-                    <span>Choose File</span>
-                </label>
-                <br><br>
-                <button type="submit">Upload</button>
+    <div class="relative min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8  relative items-center"
+        style="margin-top: 64px;">
+        <!-- <div class="absolute bg-black opacity-60 inset-0 z-0"></div> -->
+        <div class="sm:max-w-lg w-full p-10 bg-white rounded-xl z-10">
+            <div class="text-center">
+                <h2 class="mt-5 text-3xl font-bold text-gray-900">
+                    Upload Skin Image
+                </h2>
+                <p class="mt-2 text-sm text-gray-400">Please upload a clear image of the affected skin area.</p>
+            </div>
+            <form class="mt-8 space-y-3" action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+                <div class="grid grid-cols-1 space-y-2">
+                    <label class="text-sm font-bold text-gray-500 tracking-wide">Attach Image</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                            <div class="h-full w-full text-center flex flex-col items-center justify-center">
+                                <div class="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                    <img class="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="upload image">
+                                </div>
+                                <p class="pointer-none text-gray-500"><span class="text-sm">Drag and drop</span> files here <br /> or <a href="#" id="fileSelect" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
+                                <p id="fileName" class="mt-2 text-gray-700"></p>
+                            </div>
+                            <input type="file" class="hidden" id="fileInput" name="image">
+                        </label>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-300">
+                    <span>File type: jpg, png</span>
+                </p>
+                <div>
+                    <button type="submit" class="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
+                        Upload
+                    </button>
+                </div>
             </form>
-            <div id="loading" class="loading-animation" style="display: none;">
-                <div class="spinner"></div>
-            </div>
-            <div id="result" style="display: none; margin-top: 20px;">
-                <h2>Prediction Result:</h2>
-                <p id="prediction"></p>
-                <div id="info" class="info-section"></div>
-            </div>
-            <div id="resultSection" style="display: none; margin-top: 20px;">
-                <!-- This will be populated by JavaScript -->
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section p-6 bg-white rounded-xl shadow-lg mt-6">
+                <h3 class="text-2xl font-bold text-gray-900">Diagnosis Results</h3>
+                <p id="resultText" class="mt-4 text-gray-700">No results yet.</p>
+                <p id="additionalInfo" class="mt-2 text-sm text-gray-500"></p>
             </div>
         </div>
     </div>
 
-    <script src="/static/upload.js"></script>
+    <!-- Loading Animation -->
+    <div id="loading" class="loading-animation" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script>
+        document.getElementById('fileSelect').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file selected';
+            document.getElementById('fileName').textContent = `Selected file: ${fileName}`;
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            // Show the loading animation
+            const loadingAnimation = document.getElementById('loading');
+            loadingAnimation.style.display = 'block';
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response received:', response);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data);
+                if (data.success) {
+                    const result = data.prediction;
+                    const info = data.info;
+
+                    // Hide the loading animation
+                    loadingAnimation.style.display = 'none';
+
+                    // Find the result section
+                    const resultSection = document.getElementById('resultSection');
+                    if (!resultSection) {
+                        console.error('Result section not found in the DOM.');
+                        return;
+                    }
+
+                    // Update the result section with disease information
+                    resultSection.innerHTML = `
+                        <h2 class="diag">Diagnosis Result: ${result}</h2>
+                        <p><strong>Description:</strong> ${info.description || 'No description available.'}</p>
+                        <p><strong>Recommendations:</strong> ${info.recommendations || 'No recommendations available.'}</p>
+                        <p><strong>Treatment:</strong> ${info.treatment || 'No treatment information available.'}</p>
+                        <p><strong>Advice:</strong> ${info.advice || 'No advice available.'}</p>
+                    `;
+
+                    // Show the result section
+                    resultSection.style.display = 'block';
+                    resultSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.error('Error:', data.error);
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('An error occurred while uploading the file.');
+            })
+            .finally(() => {
+                // Hide the loading animation if there was an error
+                if (document.getElementById('loading').style.display !== 'none') {
+                    loadingAnimation.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
