@@ -165,7 +165,22 @@
 
         // Define margins and page width
         const margin = 10;
-        const pageWidth = doc.internal.pageSize.getWidth() - 2 * margin;
+        const paging = doc.internal.pageSize.getWidth() - 2 * margin;
+
+        const imageWidth = 150;
+        const imageHeight = 150;
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const imageX = (pageWidth - imageWidth)/2;
+        const imageY = (pageHeight-imageHeight)/2;
+
+        try{
+            doc.addImage(imageUrl, 'PNG', imageX, imageY, imageWidth, imageHeight);
+            console.log("Image added to PDF");
+        }
+        catch (error){
+            console.error("Error adding image to pdf");
+        }
 
         // Get the content from the result section
         const resultSection = document.getElementById('resultSection');
@@ -179,7 +194,7 @@
             const textContent = resultSection.innerText;
 
             // Use splitTextToSize to wrap text
-            const lines = doc.splitTextToSize(textContent, pageWidth);
+            const lines = doc.splitTextToSize(textContent, paging);
             doc.text(lines, margin, margin + 20);
 
             // Save the generated PDF
@@ -264,10 +279,4 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
 
