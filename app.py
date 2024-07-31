@@ -153,24 +153,6 @@ def upload_file():
 def faq():
     return render_template('faq.html')
 
-# @app.route('/download-pdf', methods=['GET'])
-# def download_pdf():
-#     diagnosis = request.args.get('diagnosis', 'No diagnosis provided')
-#     advice = request.args.get('advice', 'No advice provided')
-#     recommendations = request.args.get('recommendations', 'No recommendations provided')
-#     treatment_options = request.args.get('treatment_options', 'No treatment options provided')
-
-#     buffer = io.BytesIO()
-#     c = canvas.Canvas(buffer, pagesize=letter)
-#     c.drawString(100, 750, "Diagnosis Report")
-#     c.drawString(100, 700, f"Diagnosis: {diagnosis}")
-#     c.drawString(100, 650, f"Advice: {advice}")
-#     c.drawString(100, 600, f"Recommendations: {recommendations}")
-#     c.drawString(100, 550, f"Treatment Options: {treatment_options}")
-#     c.save()
-
-#     buffer.seek(0)
-#     return send_file(buffer, as_attachment=True, download_name='diagnosis_report.pdf', mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
