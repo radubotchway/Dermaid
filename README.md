@@ -47,7 +47,31 @@ MobileNetV2 was chosen for its size. The model has to load and run inference ins
 
 The base is frozen, so only the classification head is trained.
 
-Validation accuracy: TODO, fill in from your training run.
+## Results
+
+![Training and validation curves](docs/training-curves.png)
+
+Trained for 20 epochs on 762 labelled images across the nine classes, roughly 85 images
+per class, split into training and validation sets.
+
+| Metric | Value |
+|---|---|
+| Best validation accuracy | 95.2% (epoch 8) |
+| Final validation accuracy | ~94.5% |
+| Final validation loss | ~0.19 |
+| Training accuracy | 100% from epoch 3 onward |
+| Inference time | under 10 seconds end to end through the web interface |
+
+Read those numbers with the curves in front of you. Training accuracy reaches 1.0 by the
+third epoch and training loss falls to nearly zero, while validation loss flattens at 0.19
+and stops improving. That is the model memorising the training set, not continuing to learn
+from it. The validation figure is real, but it sits on a validation split of a 762 image
+dataset, so a handful of images decide the last percentage point. It is a reasonable result
+for the dataset size and it is not a claim about performance on skin the model has never
+seen, in lighting it has never seen, on skin tones the dataset barely contains. That last
+problem is what the companion repo
+[GAN-FOR-SKIN-COLOUR](https://github.com/radubotchway/GAN-FOR-SKIN-COLOUR) was built to
+attack.
 
 ## Stack
 
