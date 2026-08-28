@@ -26,6 +26,22 @@ The nine classes:
 | Shingles | Viral |
 | Clear Skin | Negative class |
 
+## The interface
+
+![Dermaid upload page](docs/upload.jpg)
+
+The upload page. A photograph is posted to the Flask app, preprocessed to 128 x 128, and passed to the Keras model loaded in-process. There is no external API call; the model runs on the same machine serving the page.
+
+![Prediction result: ringworm](docs/prediction.jpg)
+
+A returned prediction. The predicted class is paired with a plain-language description, self-care recommendations, treatment notes, and a standing instruction to see a clinician. The result can be exported as a PDF.
+
+### Demo
+
+![Uploading a photograph and receiving a classification](docs/demo.gif)
+
+Upload to result, at 2x speed. The full-length screen recording is at [`docs/dermaid-demo.mp4`](docs/dermaid-demo.mp4).
+
 ## The dataset problem
 
 Public dermatology datasets skew heavily toward lighter skin tones. A classifier trained on them will underperform on darker skin, which is exactly the population this project was built for.
