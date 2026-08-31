@@ -67,8 +67,27 @@ The base is frozen, so only the classification head is trained.
 
 ![Training and validation curves](docs/training-curves.png)
 
-Trained for 20 epochs on 762 labelled images across the nine classes, roughly 85 images
-per class, split into training and validation sets.
+Trained for 20 epochs on the dataset's `train_set` directory, 1,751 labelled images across
+the nine classes, with a 20% validation split taken from that same directory.
+
+The classes are not balanced, and this matters for reading any accuracy figure:
+
+| Class | Train images | Test images |
+|---|---:|---:|
+| Clear skin | 826 | 92 |
+| Cellulitis | 136 | 34 |
+| Chicken pox | 136 | 34 |
+| Shingles | 130 | 33 |
+| Nail fungus | 129 | 33 |
+| Athlete's foot | 124 | 32 |
+| Cutaneous larva migrans | 100 | 25 |
+| Ringworm | 90 | 23 |
+| Impetigo | 80 | 20 |
+
+Clear skin alone is 47% of the training set. A model that answered "clear skin" for every
+image would score about 47% without having learned anything, so overall accuracy is a weak
+metric here. Per-class recall and macro F1 are the figures that would actually mean
+something, and they were not computed.
 
 | Metric | Value |
 |---|---|
@@ -76,16 +95,25 @@ per class, split into training and validation sets.
 | Final validation accuracy | ~94.5% |
 | Final validation loss | ~0.19 |
 | Training accuracy | 100% from epoch 3 onward |
+| Majority-class baseline | ~47% |
 | Inference time | under 10 seconds end to end through the web interface |
 
-Read those numbers with the curves in front of you. Training accuracy reaches 1.0 by the
-third epoch and training loss falls to nearly zero, while validation loss flattens at 0.19
-and stops improving. That is the model memorising the training set, not continuing to learn
-from it. The validation figure is real, but it sits on a validation split of a 762 image
-dataset, so a handful of images decide the last percentage point. It is a reasonable result
-for the dataset size and it is not a claim about performance on skin the model has never
-seen, in lighting it has never seen, on skin tones the dataset barely contains. That last
-problem is what the companion repo
+Two caveats belong with those numbers.
+
+The first is overfitting, and it is visible in the curves. Training accuracy reaches 1.0 by
+the third epoch and training loss falls to nearly zero, while validation loss flattens at
+0.19 and stops improving. That is the model memorising the training set, not continuing to
+learn from it.
+
+The second is that **this is not a held-out result**. The 20% validation split comes out of
+the training directory and was used while choosing the model, so it is not an unbiased
+estimate of performance on unseen data. The dataset ships a genuine `test_set` of 326
+images across all nine classes which this project never evaluated against. Running it
+remains the most useful outstanding piece of work here.
+
+Neither figure is a claim about performance on skin the model has never seen, in lighting
+it has never seen, or on skin tones the dataset barely contains. That last problem is what
+the companion repo
 [GAN-FOR-SKIN-COLOUR](https://github.com/radubotchway/GAN-FOR-SKIN-COLOUR) was built to
 attack.
 
@@ -114,7 +142,7 @@ The dataset is not included in this repository. Download the skin disease datase
 
 ```bash
 python model/train_model.py    # trains and writes weights
-python model/test_model.py     # evaluates on the held-out test set
+python model/test_model.py     # single-image inference demo, not an evaluation
 ```
 
 ## Structure
@@ -132,11 +160,22 @@ static/             css, js, images
 
 ## Known limitations
 
-- The base model is frozen. No fine-tuning pass over the upper base layers was run, which is the most obvious next improvement.
+- **There is no held-out evaluation.** Reported accuracy comes from a validation split of the
+  training directory, used during model selection. The dataset's own `test_set` (326 images)
+  has never been run. This is the first thing that should be fixed.
+- The base model is frozen. No fine-tuning pass over the upper base layers was run.
 - No data augmentation in the training pipeline.
-- Class balance across the nine conditions was not corrected.
-- The interface returns a class but does not surface a confidence score, which it should.
-- Paths in `model/train_model.py` are hardcoded and should be command-line arguments.
+- Class balance was not corrected. Clear skin is 47% of the training set, so accuracy
+  flatters the model and no per-class metrics were reported.
+- The interface returns a class but does not surface a confidence score, which it should,
+  particularly for a screening tool where a low-confidence answer should read differently
+  from a confident one.
+- Paths in `model/train_model.py` are hardcoded to an absolute Windows directory and should
+  be command-line arguments.
+- `class_names.txt` is maintained by hand and must match the alphabetical order of the
+  dataset's class directories. It currently does, but nothing enforces it: renaming a
+  dataset folder would silently mislabel every prediction. It should be written out from
+  `train_dataset.class_names` at training time.
 
 ## License
 
