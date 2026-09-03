@@ -1,0 +1,126 @@
+==============================================================================
+DERMAID: HELD-OUT EVALUATION WITH LEAKAGE CONTROL
+==============================================================================
+Generated:  2026-09-03 12:36
+Test set:   C:\Users\ronar\Desktop\Programming\AI-Based Skin Disease Diagnosis Tool\Dataset\archive\skin-disease-datasaet\test_set
+Train set:  C:\Users\ronar\Desktop\Programming\AI-Based Skin Disease Diagnosis Tool\Dataset\archive\skin-disease-datasaet\train_set
+Weights:    C:\Users\ronar\Desktop\Programming\Dermaid\model\model.weights.h5
+
+------------------------------------------------------------------------------
+LEAKAGE BETWEEN TRAIN AND TEST
+------------------------------------------------------------------------------
+Similarity measured by 16x16 average hash (256 bits). Hamming distance 0
+means the two images are perceptually identical.
+
+  threshold      test images excluded      remaining
+  <= 0             78  ( 24.0%)              247
+  <= 2            119  ( 36.6%)              206
+  <= 4            136  ( 41.8%)              189
+  <= 6            146  ( 44.9%)              179
+  <= 8            149  ( 45.8%)              176
+  <= 10           154  ( 47.4%)              171
+
+The shipped test_set is therefore NOT a clean held-out split. It shares a
+substantial fraction of its images with train_set, byte-identical in some
+cases and re-encoded or lightly augmented in many more. This is an artefact
+of how the dataset was assembled from public sources and passed through
+Roboflow, not of the training code.
+
+------------------------------------------------------------------------------
+SENSITIVITY: HOW THE HEADLINE MOVES AS LEAKED IMAGES ARE REMOVED
+------------------------------------------------------------------------------
+
+  exclusion                   n   accuracy   macro F1  cond->clear
+  none (raw)                325      94.5%      0.928         0.0%
+  hamming <= 0              247      92.7%      0.895         0.0%
+  hamming <= 2              206      92.2%      0.873         0.0%
+  hamming <= 4              189      91.5%      0.836         0.0%
+  hamming <= 6              179      91.1%      0.811         0.0%
+
+Read the raw row as the contaminated number and the others as the honest
+range. If accuracy barely moves as duplicates are removed, the model is
+generalising. If it falls sharply, the raw figure was measuring memorisation.
+
+==============================================================================
+HEADLINE  (excluding test images perceptually identical to a train image)
+==============================================================================
+Images evaluated:         247 of 325
+Accuracy:                 92.7%
+Majority-class baseline:  34.0%   (always predicting 'Clear Skin')
+Lift over baseline:       +58.7 percentage points
+Macro F1:                 0.895   (all classes weighted equally)
+
+For comparison, the same model on the uncleaned test set: 94.5% accuracy, macro F1 0.928.
+
+------------------------------------------------------------------------------
+PER-CLASS BREAKDOWN  (leakage-excluded)
+------------------------------------------------------------------------------
+                         precision    recall  f1-score   support
+
+             Cellulitis      0.840     0.913     0.875        23
+               Impetigo      0.889     1.000     0.941        16
+             Clear Skin      1.000     1.000     1.000        84
+           Athlete-Foot      0.895     0.810     0.850        21
+            Nail Fungus      1.000     0.970     0.985        33
+               Ringworm      0.933     0.737     0.824        19
+Cutaneous Larva Migrans      0.737     0.824     0.778        17
+            Chicken Pox      1.000     0.857     0.923        14
+               Shingles      0.826     0.950     0.884        20
+
+               accuracy                          0.927       247
+              macro avg      0.902     0.896     0.895       247
+           weighted avg      0.932     0.927     0.927       247
+
+------------------------------------------------------------------------------
+CLINICALLY ASYMMETRIC ERROR: CONDITION CLASSIFIED AS CLEAR SKIN
+------------------------------------------------------------------------------
+Telling someone with a real condition that their skin is clear is the
+dangerous failure mode. Every other confusion still sends them to a clinician.
+
+Images with a genuine condition:  163
+Classified as clear skin:         0
+Rate:                             0.0%
+
+  Condition                           AsClear    Total      Rate
+  Cellulitis                                0       23      0.0%
+  Impetigo                                  0       16      0.0%
+  Athlete-Foot                              0       21      0.0%
+  Nail Fungus                               0       33      0.0%
+  Ringworm                                  0       19      0.0%
+  Cutaneous Larva Migrans                   0       17      0.0%
+  Chicken Pox                               0       14      0.0%
+  Shingles                                  0       20      0.0%
+
+------------------------------------------------------------------------------
+CONFIDENCE  (leakage-excluded)
+------------------------------------------------------------------------------
+Mean softmax confidence when correct:    0.984
+Mean softmax confidence when incorrect:  0.771
+
+Errors carry visibly lower confidence than correct predictions, so a
+confidence threshold could plausibly gate low-certainty predictions.
+
+------------------------------------------------------------------------------
+CONFUSION MATRIX  (leakage-excluded; rows = true, columns = predicted)
+------------------------------------------------------------------------------
+
+                                     0     1     2     3     4     5     6     7     8
+[0] Cellulitis                      21     1     0     0     0     0     1     0     0
+[1] Impetigo                         0    16     0     0     0     0     0     0     0
+[2] Clear Skin                       0     0    84     0     0     0     0     0     0
+[3] Athlete-Foot                     1     0     0    17     0     0     3     0     0
+[4] Nail Fungus                      0     1     0     0    32     0     0     0     0
+[5] Ringworm                         2     0     0     0     0    14     1     0     2
+[6] Cutaneous Larva Migrans          1     0     0     2     0     0    14     0     0
+[7] Chicken Pox                      0     0     0     0     0     0     0    12     2
+[8] Shingles                         0     0     0     0     0     1     0     0    19
+
+==============================================================================
+SUMMARY FOR A CV OR STATEMENT OF PURPOSE
+==============================================================================
+
+  Found that the dataset's shipped test split shared 24% of its images with
+  the training set (perceptually identical), so evaluated on the 247-image
+  deduplicated remainder: 92.7% accuracy against a 34.0% majority-class
+  baseline, macro F1 0.895, and a 0.0% rate of genuine conditions being
+  classified as clear skin.

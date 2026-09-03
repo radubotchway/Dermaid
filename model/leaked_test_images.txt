@@ -1,0 +1,148 @@
+Test images with a near-duplicate in train_set (16x16 aHash, 256 bits)
+distance	test_image	nearest_train_image
+0	CS- clear skin\normal_279a22f5405c0c49cef1_jpg.rf.336992d84bbdb67725a7864a5fbe57ea.jpg	normal_f3bf352c3bdce05b8027_jpg.rf.90af4b27eaeda08fcad1671d5048b7d8.jpg
+0	CS- clear skin\normal_8d9e660d1006814cb698_jpg.rf.8e690613ca2739a8a60590c356da32af.jpg	normal_8d9e660d1006814cb698_jpg.rf.62ea3098637b2efd4a24bacf967717c7.jpg
+0	CS- clear skin\normal_8d21ff6154d429ef506d_jpg.rf.55dcc73a53cb3cda43524667e492fd96.jpg	normal_8d21ff6154d429ef506d_jpg.rf.d625f1ae1da1008211170670ae3040af.jpg
+0	VI-chickenpox\161_VI-chickenpox (12).jpg	101_VI-chickenpox (12).jpg
+0	CS- clear skin\normal_800b1d9bedd36765807a_jpg.rf.9b5468927dbd3f46d17b8e2383d3c600.jpg	normal_800b1d9bedd36765807a_jpg.rf.a1b338ca07a68df98effb1a7bee6c33b.jpg
+0	VI-chickenpox\164_VI-chickenpox (1).jpg	42_VI-chickenpox (1).jpg
+0	FU-athlete-foot\FU-athlete-foot (8).jpg	FU-athlete-foot (55).jpg
+0	VI-chickenpox\168_VI-chickenpox (25).jpg	63_VI-chickenpox (9).jpg
+0	FU-athlete-foot\FU-athlete-foot (9).jpg	FU-athlete-foot (65).jpg
+0	VI-chickenpox\17_VI-chickenpox (27).jpg	10_VI-chickenpox (27).jpg
+0	VI-chickenpox\25_VI-chickenpox (2).jpeg	102_VI-chickenpox (2).jpeg
+0	FU-athlete-foot\FU-athlete-foot (6).jpg	FU-athlete-foot (55).jpg
+0	CS- clear skin\normal_3a9aef121f54bea1361b_jpg.rf.d94e39deeb4b4173397fbd172bee1f3c.jpg	normal_3a9aef121f54bea1361b_jpg.rf.56344f4222f46b5f5b9ddafcb56d8070.jpg
+0	CS- clear skin\normal_385fa27e0c389c2a6ceb_jpg.rf.ae9196bf9990df4c2438b269839c70fc.jpg	normal_385fa27e0c389c2a6ceb_jpg.rf.125f9953057a5dc2765d35a32b7b0e86.jpg
+0	VI-chickenpox\53_VI-chickenpox (2).jpeg	106_VI-chickenpox (2).jpeg
+0	VI-chickenpox\56_VI-chickenpox (15).jpg	119_VI-chickenpox (15).jpg
+0	CS- clear skin\normal_059b3e437854f2087e1c_jpg.rf.c222b7de169d732b9f68b9e0cc464308.jpg	normal_059b3e437854f2087e1c_jpg.rf.dbd586f9c8e601a77defb305ce70b1df.jpg
+0	FU-ringworm\77_FU-ringworm (10).jpeg	12_FU-ringworm (10).jpeg
+0	VI-chickenpox\60_VI-chickenpox (12).jpg	101_VI-chickenpox (12).jpg
+0	VI-chickenpox\81_VI-chickenpox (20).jpg	132_VI-chickenpox (20).jpg
+0	VI-chickenpox\86_VI-chickenpox (24).jpg	116_VI-chickenpox (1).jpeg
+0	VI-shingles\127_VI-shingles (32).jpg	152_VI-shingles (30).jpg
+0	VI-shingles\132_VI-shingles (6).jpg	140_VI-shingles (6).jpg
+0	CS- clear skin\normal_39a5a0a01f958ee678f7_jpg.rf.4c312ae8b53bdeb47205fbcb561199c0.jpg	normal_39a5a0a01f958ee678f7_jpg.rf.833f621880fa7bbb25b6037f0d69e680.jpg
+0	VI-shingles\136_VI-shingles (10).jpg	46_VI-shingles (10).jpg
+0	FU-athlete-foot\FU-athlete-foot (5).jpg	FU-athlete-foot (32).jpg
+0	VI-chickenpox\158_VI-chickenpox (17).jpg	48_VI-chickenpox (17).jpg
+0	PA-cutaneous-larva-migrans\4_PA-cutaneous-larva-migrans (18).jpg	8_PA-cutaneous-larva-migrans (18).jpg
+0	FU-athlete-foot\FU-athlete-foot (17).jpg	FU-athlete-foot (56).jpg
+0	FU-athlete-foot\FU-athlete-foot (16).jpg	FU-athlete-foot (53).jpg
+0	FU-athlete-foot\FU-athlete-foot (14).jpg	FU-athlete-foot (12).jpg
+0	FU-athlete-foot\FU-athlete-foot (12).jpg	FU-athlete-foot (55).jpg
+0	FU-athlete-foot\FU-athlete-foot (11).jpg	FU-athlete-foot (54).jpg
+0	PA-cutaneous-larva-migrans\21_PA-cutaneous-larva-migrans (12).jpg	10_PA-cutaneous-larva-migrans (2).jpeg
+0	PA-cutaneous-larva-migrans\56_PA-cutaneous-larva-migrans (4).jpeg	18_PA-cutaneous-larva-migrans (57).jpg
+0	FU-athlete-foot\FU-athlete-foot (22).jpg	FU-athlete-foot (28).jpg
+0	PA-cutaneous-larva-migrans\5_PA-cutaneous-larva-migrans (31).jpg	20_PA-cutaneous-larva-migrans (31).jpg
+0	VI-chickenpox\15_VI-chickenpox (1).jpeg	116_VI-chickenpox (1).jpeg
+0	PA-cutaneous-larva-migrans\86_PA-cutaneous-larva-migrans (6).jpg	84_PA-cutaneous-larva-migrans (6).jpg
+0	PA-cutaneous-larva-migrans\13_PA-cutaneous-larva-migrans (3).jpg	27_PA-cutaneous-larva-migrans (3).jpg
+0	FU-athlete-foot\FU-athlete-foot (25).jpg	FU-athlete-foot (36).jpg
+0	VI-chickenpox\107_VI-chickenpox (17).jpg	48_VI-chickenpox (17).jpg
+0	VI-chickenpox\122_VI-chickenpox (7).jpg	84_VI-chickenpox (7).jpg
+0	VI-chickenpox\125_VI-chickenpox (3).jpg	38_VI-chickenpox (3).jpg
+0	VI-chickenpox\12_VI-chickenpox (27).jpg	10_VI-chickenpox (27).jpg
+0	VI-chickenpox\133_VI-chickenpox (3).jpeg	134_VI-chickenpox (3).jpeg
+0	VI-chickenpox\143_VI-chickenpox (20).jpg	103_VI-chickenpox (20).jpg
+0	VI-chickenpox\14_VI-chickenpox (20).jpg	132_VI-chickenpox (20).jpg
+0	PA-cutaneous-larva-migrans\11_PA-cutaneous-larva-migrans (28).jpg	70_PA-cutaneous-larva-migrans (28).jpg
+0	VI-chickenpox\0_VI-chickenpox (2).jpeg	106_VI-chickenpox (2).jpeg
+0	FU-ringworm\47_FU-ringworm (9).jpg	6_FU-ringworm (9).jpg
+0	PA-cutaneous-larva-migrans\25_PA-cutaneous-larva-migrans (38).jpg	47_PA-cutaneous-larva-migrans (38).jpg
+0	BA- cellulitis\BA- cellulitis (3).jpeg	BA- cellulitis (2).jpg
+0	VI-shingles\142_VI-shingles (34).jpg	35_VI-shingles (34).jpg
+0	VI-shingles\25_VI-shingles (12).jpg	3_VI-shingles (12).jpg
+0	BA-impetigo\42_BA-impetigo (2).png	79_BA-impetigo (2).png
+0	BA- cellulitis\BA- cellulitis (40).jpg	BA- cellulitis (152).jpg
+0	BA- cellulitis\BA- cellulitis (69).jpg	BA- cellulitis (14).jpg
+0	BA- cellulitis\BA- cellulitis (31).jpg	BA- cellulitis (4).jpeg
+0	BA-impetigo\22_BA-impetigo (55).jpg	71_BA-impetigo (55).jpg
+0	BA- cellulitis\BA- cellulitis (27).jpg	BA- cellulitis (149).jpg
+0	BA-impetigo\59_BA-impetigo (6).jpg	94_BA-impetigo (6).jpg
+0	VI-shingles\143_VI-shingles (14).jpg	50_VI-shingles (14).jpg
+0	BA- cellulitis\BA- cellulitis (21).jpg	BA- cellulitis (71).jpg
+0	FU-ringworm\21_FU-ringworm (5).jpg	15_FU-ringworm (54).jpg
+0	FU-ringworm\44_FU-ringworm (5).jpg	15_FU-ringworm (54).jpg
+0	BA- cellulitis\BA- cellulitis (17).jpg	BA- cellulitis (92).jpg
+0	VI-shingles\161_VI-shingles (4).jpg	130_VI-shingles (4).jpg
+0	BA- cellulitis\BA- cellulitis (148).jpg	BA- cellulitis (118).jpg
+0	BA- cellulitis\BA- cellulitis (144).jpg	BA- cellulitis (22).jpg
+0	VI-shingles\160_VI-shingles (30).jpg	152_VI-shingles (30).jpg
+0	BA- cellulitis\BA- cellulitis (83).jpg	BA- cellulitis (26).jpg
+0	VI-shingles\13_VI-shingles (3).jpeg	145_VI-shingles (3).jpeg
+0	VI-shingles\138_VI-shingles (3).jpg	155_VI-shingles (7).jpg
+0	VI-shingles\66_VI-shingles (11).jpg	1_VI-shingles (11).jpg
+0	VI-shingles\78_VI-shingles (13).jpg	107_VI-shingles (13).jpg
+0	BA-impetigo\28_BA-impetigo (6).jpeg	57_BA-impetigo (6).jpeg
+0	VI-shingles\16_VI-shingles (12).jpg	3_VI-shingles (12).jpg
+1	VI-shingles\158_VI-shingles (9).jpg	147_VI-shingles (9).jpg
+1	VI-shingles\137_VI-shingles (4).jpg	130_VI-shingles (4).jpg
+1	VI-shingles\27_VI-shingles (1).jpg	114_VI-shingles (1).jpg
+1	VI-chickenpox\121_VI-chickenpox (18).jpg	152_VI-chickenpox (18).jpg
+1	VI-shingles\42_VI-shingles (1).jpeg	41_VI-shingles (1).jpeg
+1	BA- cellulitis\BA- cellulitis (18).jpg	BA- cellulitis (138).jpg
+1	VI-shingles\47_VI-shingles (9).jpg	147_VI-shingles (9).jpg
+1	FU-athlete-foot\FU-athlete-foot (1).jpg	FU-athlete-foot (56).jpg
+1	FU-athlete-foot\FU-athlete-foot (10).jpg	FU-athlete-foot (22).jpg
+1	VI-shingles\57_VI-shingles (27).jpg	17_VI-shingles (27).jpg
+1	BA- cellulitis\BA- cellulitis (63).jpg	BA- cellulitis (2).webp
+1	BA-impetigo\10_BA-impetigo (89).jpg	12_BA-impetigo (89).jpg
+1	FU-athlete-foot\FU-athlete-foot (23).jpg	FU-athlete-foot (31).jpg
+1	FU-ringworm\75_FU-ringworm (27).jpg	57_FU-ringworm (27).jpg
+1	FU-ringworm\73_FU-ringworm (27).jpg	57_FU-ringworm (27).jpg
+1	VI-chickenpox\87_VI-chickenpox (25).jpg	147_VI-chickenpox (25).jpg
+1	VI-shingles\100_VI-shingles (27).jpg	17_VI-shingles (27).jpg
+1	VI-chickenpox\39_VI-chickenpox (11).jpg	138_VI-chickenpox (11).jpg
+1	FU-ringworm\62_FU-ringworm (8).jpeg	70_FU-ringworm (8).jpeg
+1	BA-impetigo\27_BA-impetigo (54).jpg	69_BA-impetigo (54).jpg
+1	VI-chickenpox\30_VI-chickenpox (26).jpg	106_VI-chickenpox (2).jpeg
+2	VI-chickenpox\80_VI-chickenpox (14).jpg	157_VI-chickenpox (14).jpg
+2	VI-chickenpox\124_VI-chickenpox (4).jpg	44_VI-chickenpox (4).jpg
+2	FU-athlete-foot\FU-athlete-foot (15).jpg	FU-athlete-foot (21).jpg
+2	VI-shingles\31_VI-shingles (30).jpg	75_VI-shingles (32).jpg
+2	VI-chickenpox\111_VI-chickenpox (17).jpg	48_VI-chickenpox (17).jpg
+2	FU-athlete-foot\FU-athlete-foot (27).jpg	FU-athlete-foot (21).jpg
+2	VI-shingles\93_VI-shingles (3).jpg	155_VI-shingles (7).jpg
+2	VI-chickenpox\98_VI-chickenpox (1).jpeg	116_VI-chickenpox (1).jpeg
+2	PA-cutaneous-larva-migrans\69_PA-cutaneous-larva-migrans (58).jpg	19_PA-cutaneous-larva-migrans (16).jpg
+2	FU-athlete-foot\FU-athlete-foot (3).jpg	FU-athlete-foot (34).jpg
+2	FU-ringworm\35_FU-ringworm (20).jpg	38_FU-ringworm (20).jpg
+2	BA-impetigo\18_BA-impetigo (82).jpg	74_BA-impetigo (82).jpg
+2	VI-shingles\89_VI-shingles (17).jpg	123_VI-shingles (17).jpg
+2	BA-impetigo\98_BA-impetigo (74).jpg	85_BA-impetigo (74).jpg
+2	VI-shingles\18_VI-shingles (18).jpg	63_VI-shingles (18).jpg
+2	CS- clear skin\oily_ac4eb626b7f5ec7a7a45_jpg.rf.9fe6265849a37dce9724e8f9f3e058c0.jpg	normal_4470a6d0a6609dd83a6a_jpg.rf.07e3aedcf38ea04297c62335db7c46a0.jpg
+2	CS- clear skin\oily_e50d7b6a71e2db3ee8fa_jpg.rf.27c93b5abe4fc542461abf0d5dfdd60a.jpg	normal_6bc6b15647a02e966eae_jpg.rf.d39acf03af213f94afe23ad61e2bc7c4.jpg
+2	BA- cellulitis\BA- cellulitis (106).jpg	BA- cellulitis (1).jpg
+2	CS- clear skin\normal_7daecf3670aa597ee376_jpg.rf.f13b2788fc314d9ba271ba5855b5a284.jpg	normal_f3bf352c3bdce05b8027_jpg.rf.90af4b27eaeda08fcad1671d5048b7d8.jpg
+2	BA-impetigo\49_BA-impetigo (17).jpg	52_BA-impetigo (17).jpg
+3	VI-shingles\124_VI-shingles (3).jpg	116_VI-shingles (3).jpg
+3	PA-cutaneous-larva-migrans\92_PA-cutaneous-larva-migrans (51).jpg	113_PA-cutaneous-larva-migrans (51).jpg
+3	VI-chickenpox\9_VI-chickenpox (5).jpg	79_VI-chickenpox (15).jpg
+3	FU-ringworm\16_FU-ringworm (59).jpg	100_FU-ringworm (59).jpg
+3	FU-athlete-foot\FU-athlete-foot (20).jpg	FU-athlete-foot (10).jpg
+3	FU-athlete-foot\FU-athlete-foot (1).png	FU-athlete-foot (92).jpg
+3	PA-cutaneous-larva-migrans\66_PA-cutaneous-larva-migrans (56).jpg	57_PA-cutaneous-larva-migrans (56).jpg
+3	VI-shingles\106_VI-shingles (23).jpg	118_VI-shingles (23).jpg
+3	VI-chickenpox\40_VI-chickenpox (22).jpg	114_VI-chickenpox (22).jpg
+3	FU-ringworm\87_FU-ringworm (59).jpg	100_FU-ringworm (59).jpg
+4	BA-impetigo\41_BA-impetigo (89).jpg	12_BA-impetigo (89).jpg
+4	PA-cutaneous-larva-migrans\2_PA-cutaneous-larva-migrans (9).jpg	32_PA-cutaneous-larva-migrans (9).jpg
+4	BA-impetigo\60_BA-impetigo (3).png	87_BA-impetigo (62).jpg
+4	CS- clear skin\oily_9b5ffeab96141c452190_jpg.rf.592896687eb2ffb46a3aef7a7ee95e04.jpg	normal_83e6ce8def2d62166f2a_jpg.rf.39ad468166f13d4da5c223c843c953c9.jpg
+4	FU-athlete-foot\FU-athlete-foot (13).jpg	FU-athlete-foot (45).jpg
+4	BA-impetigo\88_BA-impetigo (67).jpg	83_BA-impetigo (67).jpg
+4	VI-chickenpox\105_VI-chickenpox (2).jpeg	106_VI-chickenpox (2).jpeg
+5	PA-cutaneous-larva-migrans\124_PA-cutaneous-larva-migrans (51).jpg	113_PA-cutaneous-larva-migrans (51).jpg
+5	FU-athlete-foot\FU-athlete-foot (30).jpg	FU-athlete-foot (21).jpg
+5	BA-impetigo\50_BA-impetigo (38).jpg	15_BA-impetigo (38).jpg
+5	PA-cutaneous-larva-migrans\104_PA-cutaneous-larva-migrans (62).jpg	108_PA-cutaneous-larva-migrans (62).jpg
+5	PA-cutaneous-larva-migrans\117_PA-cutaneous-larva-migrans (49).jpg	83_PA-cutaneous-larva-migrans (49).jpg
+5	FU-athlete-foot\FU-athlete-foot (28).jpg	FU-athlete-foot (66).jpg
+6	CS- clear skin\normal_f65769e2a014f7ca01cc_jpg.rf.b4c9c8d138b012b75cb803a45cc99daf.jpg	normal_f3bf352c3bdce05b8027_jpg.rf.90af4b27eaeda08fcad1671d5048b7d8.jpg
+6	CS- clear skin\normal_a14cbc3fe88c559bd982_jpg.rf.5f4b1777e2d8ade390df759fd10ead00.jpg	normal_f3bf352c3bdce05b8027_jpg.rf.90af4b27eaeda08fcad1671d5048b7d8.jpg
+6	PA-cutaneous-larva-migrans\54_PA-cutaneous-larva-migrans (34).jpg	109_PA-cutaneous-larva-migrans (34).jpg
+6	FU-athlete-foot\FU-athlete-foot (1).jpeg	FU-athlete-foot (10).jpeg

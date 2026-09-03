@@ -86,8 +86,9 @@ The classes are not balanced, and this matters for reading any accuracy figure:
 
 Clear skin alone is 47% of the training set. A model that answered "clear skin" for every
 image would score about 47% without having learned anything, so overall accuracy is a weak
-metric here. Per-class recall and macro F1 are the figures that would actually mean
-something, and they were not computed.
+metric here. Per-class recall and macro F1 are the figures that actually mean something.
+
+### Training run
 
 | Metric | Value |
 |---|---|
@@ -95,25 +96,76 @@ something, and they were not computed.
 | Final validation accuracy | ~94.5% |
 | Final validation loss | ~0.19 |
 | Training accuracy | 100% from epoch 3 onward |
-| Majority-class baseline | ~47% |
 | Inference time | under 10 seconds end to end through the web interface |
 
-Two caveats belong with those numbers.
+**None of those are held-out numbers.** The 20% validation split comes out of the training
+directory and was used while choosing the model, so it is not an unbiased estimate of
+performance on unseen data.
 
-The first is overfitting, and it is visible in the curves. Training accuracy reaches 1.0 by
-the third epoch and training loss falls to nearly zero, while validation loss flattens at
-0.19 and stops improving. That is the model memorising the training set, not continuing to
-learn from it.
+Overfitting is visible in the curves. Training accuracy reaches 1.0 by the third epoch and
+training loss falls to nearly zero, while validation loss flattens at 0.19 and stops
+improving. That is the model memorising the training set, not continuing to learn from it.
 
-The second is that **this is not a held-out result**. The 20% validation split comes out of
-the training directory and was used while choosing the model, so it is not an unbiased
-estimate of performance on unseen data. The dataset ships a genuine `test_set` of 326
-images across all nine classes which this project never evaluated against. Running it
-remains the most useful outstanding piece of work here.
+### Held-out evaluation
 
-Neither figure is a claim about performance on skin the model has never seen, in lighting
-it has never seen, or on skin tones the dataset barely contains. That last problem is what
-the companion repo
+Run with [`model/evaluate_heldout.py`](model/evaluate_heldout.py) against the dataset's own
+`test_set`, which the original project never used.
+
+**The shipped test split is not clean.** Comparing every test image against all 1,751
+training images by 16x16 average hash (256 bits):
+
+| Overlap | Test images | Share of test set |
+|---|---:|---:|
+| Byte-identical (MD5) | 19 | 5.8% |
+| Perceptually identical (Hamming 0) | 78 | 24.0% |
+| Near-duplicate (Hamming <= 6) | 146 | 44.9% |
+
+Worst affected classes at Hamming 0: chickenpox 59%, shingles 39%, athlete's foot 34%.
+This is an artefact of how the dataset was assembled from public sources and passed through
+Roboflow, not of the training code. Every offending pair is listed in
+`model/leaked_test_images.txt`.
+
+Evaluating on the deduplicated remainder:
+
+| Exclusion | n | Accuracy | Macro F1 |
+|---|---:|---:|---:|
+| None (contaminated) | 325 | 94.5% | 0.928 |
+| **Hamming 0** | **247** | **92.7%** | **0.895** |
+| Hamming <= 4 | 189 | 91.5% | 0.836 |
+| Hamming <= 6 | 179 | 91.1% | 0.811 |
+
+**92.7% accuracy, macro F1 0.895, against a 34.0% majority-class baseline** is the honest
+headline. Accuracy falls only 1.8 points once perceptual duplicates are removed, which
+indicates the model is generalising rather than reciting memorised images.
+
+Errors cluster along clinically coherent lines: chickenpox confused with shingles (same
+virus), athlete's foot with cutaneous larva migrans (both on feet), ringworm with
+cellulitis. Weakest per-class recall is ringworm at 0.737.
+
+Softmax confidence separates correct from incorrect predictions cleanly, 0.984 against
+0.771, so a confidence threshold to gate low-certainty predictions is viable.
+
+### A confound the deduplication does not fix
+
+Every clear-skin image in the dataset is Roboflow-processed at 640x640 native resolution.
+Every one of the eight condition classes is 224x224 or smaller. There are no exceptions in
+either split.
+
+So the perfect clear-skin result (precision 1.000, recall 1.000, and zero conditions
+misclassified as clear skin) may reflect the model separating **photographic provenance**
+rather than **presence of pathology**. Two consequences:
+
+- The zero-miss rate should not be read as a clinical safety property. It is not
+  established as one.
+- The deployed browser demo is exposed to this. A phone photograph of healthy skin carries
+  none of the 640x640 Roboflow signature, and behaviour on genuinely novel clear-skin
+  images is untested.
+
+The control is to source negative examples from the same acquisition pipeline as the
+positives. Until that is done, treat the clear-skin class as unvalidated.
+
+None of these figures is a claim about performance on skin tones the dataset barely
+contains. That problem is what the companion repo
 [GAN-FOR-SKIN-COLOUR](https://github.com/radubotchway/GAN-FOR-SKIN-COLOUR) was built to
 attack.
 
@@ -141,35 +193,48 @@ Trained weights ship with the repository at `model/model.weights.h5`, so no trai
 The dataset is not included in this repository. Download the skin disease dataset from Kaggle, extract it, and point `dataset_dir` in `model/train_model.py` at the `train_set` directory.
 
 ```bash
-python model/train_model.py    # trains and writes weights
-python model/test_model.py     # single-image inference demo, not an evaluation
+python model/train_model.py        # trains and writes weights
+python model/test_model.py         # single-image inference demo, not an evaluation
+python model/evaluate_heldout.py   # held-out evaluation with leakage detection
 ```
+
+`evaluate_heldout.py` additionally requires scikit-learn (`pip install scikit-learn`). It
+writes `evaluation_report.txt`, `confusion_matrix.png` and `leaked_test_images.txt` into
+`model/`.
 
 ## Structure
 
 ```
-app.py              Flask app: upload, preprocess, predict, render result
+app.py                   Flask app: upload, preprocess, predict, render result
 model/
-  train_model.py    training pipeline
-  test_model.py     held-out evaluation
-  class_names.txt   ordered class labels, must match softmax output order
-  model.weights.h5  trained weights
-templates/          index, upload, faq
-static/             css, js, images
+  train_model.py         training pipeline
+  test_model.py          single-image inference demo
+  evaluate_heldout.py    held-out evaluation with train/test leakage detection
+  EVALUATION_GUIDE.md    how to run it and how to read the output
+  evaluation_report.txt  latest evaluation output
+  confusion_matrix.png   latest confusion matrix
+  leaked_test_images.txt test images duplicated in the training set
+  class_names.txt        ordered class labels, must match softmax output order
+  model.weights.h5       trained weights
+templates/               index, upload, faq
+static/                  css, js, images
 ```
 
 ## Known limitations
 
-- **There is no held-out evaluation.** Reported accuracy comes from a validation split of the
-  training directory, used during model selection. The dataset's own `test_set` (326 images)
-  has never been run. This is the first thing that should be fixed.
+- **The clear-skin class is confounded by image provenance.** All clear-skin images come
+  from a different source pipeline and native resolution than every condition class, so the
+  model may be separating photographs rather than pathology. This is the most important
+  outstanding problem and it invalidates the zero-miss rate as a safety claim.
+- **The dataset's own test split leaks into training.** 24% of test images are perceptually
+  identical to a training image. The reported held-out figures exclude them, but the
+  underlying dataset remains unsuitable for a clean benchmark without deduplication.
 - The base model is frozen. No fine-tuning pass over the upper base layers was run.
 - No data augmentation in the training pipeline.
-- Class balance was not corrected. Clear skin is 47% of the training set, so accuracy
-  flatters the model and no per-class metrics were reported.
-- The interface returns a class but does not surface a confidence score, which it should,
-  particularly for a screening tool where a low-confidence answer should read differently
-  from a confident one.
+- Class balance was not corrected. Clear skin is 47% of the training set.
+- The interface returns a class but does not surface a confidence score, which it should.
+  The evaluation shows confidence separates correct from incorrect predictions (0.984
+  against 0.771), so a threshold would carry real information.
 - Paths in `model/train_model.py` are hardcoded to an absolute Windows directory and should
   be command-line arguments.
 - `class_names.txt` is maintained by hand and must match the alphabetical order of the
