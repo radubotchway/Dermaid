@@ -145,24 +145,29 @@ cellulitis. Weakest per-class recall is ringworm at 0.737.
 Softmax confidence separates correct from incorrect predictions cleanly, 0.984 against
 0.771, so a confidence threshold to gate low-certainty predictions is viable.
 
-### A confound the deduplication does not fix
+### An uncontrolled confound
 
 Every clear-skin image in the dataset is Roboflow-processed at 640x640 native resolution.
 Every one of the eight condition classes is 224x224 or smaller. There are no exceptions in
 either split.
 
-So the perfect clear-skin result (precision 1.000, recall 1.000, and zero conditions
-misclassified as clear skin) may reflect the model separating **photographic provenance**
-rather than **presence of pathology**. Two consequences:
+The clear-skin class therefore differs from the condition classes in acquisition pipeline
+as well as in content, and nothing in this evaluation separates the two. In principle the
+perfect clear-skin result could reflect the model keying on provenance rather than on the
+absence of pathology.
 
-- The zero-miss rate should not be read as a clinical safety property. It is not
-  established as one.
-- The deployed browser demo is exposed to this. A phone photograph of healthy skin carries
-  none of the 640x640 Roboflow signature, and behaviour on genuinely novel clear-skin
-  images is untested.
+Informal spot checks argue against that being the whole story. Clear-skin photographs taken
+on a phone, and a clear-skin image pulled from the web, classify correctly despite carrying
+none of the Roboflow signature, so the model does generalise past the pipeline to some
+degree. But a handful of images is not a measurement, and the confound remains
+uncontrolled. Until negatives are sourced from the same acquisition pipeline as the
+positives, the zero-miss rate should not be read as a clinical safety property.
 
-The control is to source negative examples from the same acquisition pipeline as the
-positives. Until that is done, treat the clear-skin class as unvalidated.
+One failure worth chasing: a close-up of a forearm under warm indoor lighting was
+confidently classified as cellulitis, while other clear-skin photographs taken in other
+conditions classified correctly. Cellulitis presents as erythema and warm indoor lighting
+adds a red cast, so sensitivity to illumination colour temperature is a plausible
+explanation. Untested.
 
 None of these figures is a claim about performance on skin tones the dataset barely
 contains. That problem is what the companion repo
@@ -223,9 +228,14 @@ static/                  css, js, images
 ## Known limitations
 
 - **The clear-skin class is confounded by image provenance.** All clear-skin images come
-  from a different source pipeline and native resolution than every condition class, so the
-  model may be separating photographs rather than pathology. This is the most important
-  outstanding problem and it invalidates the zero-miss rate as a safety claim.
+  from a different source pipeline and native resolution than every condition class, and
+  the evaluation does not separate the two. Spot checks suggest the model does generalise
+  past the pipeline, but the confound is uncontrolled, so the zero-miss rate is not a
+  safety claim.
+- **Sensitivity to capture conditions is untested.** At least one close-up under warm
+  indoor lighting was confidently misclassified as cellulitis while other clear-skin
+  photographs classified correctly. A controlled test across lighting conditions and
+  camera distances would be cheap and is the obvious next experiment.
 - **The dataset's own test split leaks into training.** 24% of test images are perceptually
   identical to a training image. The reported held-out figures exclude them, but the
   underlying dataset remains unsuitable for a clean benchmark without deduplication.
